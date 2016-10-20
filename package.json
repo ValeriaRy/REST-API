@@ -1,0 +1,12 @@
+{
+  "name": "test_task_for_nodejs",
+  "version": "0.0.0",
+  "description": "REST API for site advertisements board",
+  "main": "server.js",
+  "author": "Valeria Rybas",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "~3.2.4",
+    "mysql": "~2.11.1"
+  }
+}
