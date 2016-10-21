@@ -51,7 +51,7 @@ function validationOfNewPassword(user) {
     }
 }
 
-/*Item must have a price, ешеду at least 3 characters*/
+/*Item must have a price, title at least 3 characters*/
 function validationItem(item) {
     if ((item.title) && (item.title.length > 2)) {
         if (item.price) {
