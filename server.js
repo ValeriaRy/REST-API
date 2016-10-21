@@ -128,7 +128,7 @@ function sendAnswerAbouItem(res, answer) {
     }   
 }
 
-/*Remove the server limit. If they are*/
+/*Remove the server limits. If they are*/
 function removeTheServerLimit(req, res) {
   req.setMaxListeners(0);
   res.setHeader("Access-Control-Allow-Origin", "*");
