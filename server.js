@@ -24,71 +24,53 @@ app.post('/api/register', function(req, res) {
 app.get('/api/me', function(req, res) {
     removeTheServerLimit(req, res);
     workWithUserTable.searchUser(req.query, function(answer) {
-        if (Object.keys(answer).length === 0) {
-            res.send (401, {});
-        } else {
-            res.send(200, answer);
-        }
+        sendCommonResponse(res, answer);
     });
 });
 
 app.put('/api/me', function(req, res) {
     removeTheServerLimit(req, res);
     workWithUserTable.updateUser(req.query, req.body, function(answer) {
-        if (Object.keys(answer).length === 0) {
-            res.send (401, {});
-        } else if (answer.field){
-            res.send (422, answer);
-        } else {
-            res.send(200, answer);
-        }
+        sendCommonResponse(res, answer);
     });
 });
 
-app.get('/api/user/:id', function(req, res) {
+app.get('/api/user/<id>', function(req, res) {
     removeTheServerLimit(req, res);
     workWithUserTable.searchUser(req.query, function(answer) {
-        if (Object.keys(answer).length === 0) {
-            res.send (401, {});
-        } else {
-            res.send(200, answer);
-        }
+        sendCommonResponse(res, answer);
     });
 });
 
 app.get('/api/user', function(req, res) {
     removeTheServerLimit(req, res);
     workWithUserTable.searchUsersForParametres(req.query, function(answer) {
-        if (Object.keys(answer).length === 0) {
-            res.send (401, {});
-        } else {
-            res.send(200, answer);
-        }    
+        sendCommonResponse(res, answer);   
     });
 });
 
 app.post('/api/item', function(req, res) {
     removeTheServerLimit(req, res);
     workWithItemTable.createItem(req.query, req.body, function(answer) {
-        sendAnswerAbouItem(res, answer);     
+        sendCommonResponse(res, answer);     
     });
 });
 
-app.put('/api/item/:id', function(req, res) {
+app.put('/api/item/<id>', function(req, res) {
     removeTheServerLimit(req, res);
     workWithItemTable.updateItem(req.query, req.body, function(answer) {
-        sendAnswerAbouItem(res, answer);
+        sendCommonResponse(res, answer);
     });
 });
 
-app.delete('/api/item/:id', function(req, res) {
+app.delete('/api/item/<id>', function(req, res) {
     removeTheServerLimit(req, res);
     workWithItemTable.deleteItem(req.query, function(answer) {
-        sendAnswerAbouItem(res, answer);
+        sendCommonResponse(res, answer);
     });
 });
 
-app.get('/api/item/:id', function(req, res) {
+app.get('/api/item/<id>', function(req, res) {
     removeTheServerLimit(req, res);
     workWithItemTable.getItemById(req.query.id, function(answer) {
         if (Object.keys(answer).length === 0) {
@@ -118,7 +100,7 @@ function sendAnswerAboutUser(res, answer) {
     }    
 }
 
-function sendAnswerAbouItem(res, answer) {
+function sendCommonResponse(res, answer) {
     if (Object.keys(answer).length === 0) {
         res.send (401, {});    
     } else if (answer.field) {
@@ -128,11 +110,11 @@ function sendAnswerAbouItem(res, answer) {
     }   
 }
 
-/*Remove the server limits. If they are*/
+/*Remove the server limit. If they are*/
 function removeTheServerLimit(req, res) {
   req.setMaxListeners(0);
   res.setHeader("Access-Control-Allow-Origin", "*");
 }
 
-app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
+app.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function(){
 });

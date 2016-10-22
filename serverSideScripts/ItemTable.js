@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "valeriary",
   password: "",
-  database: "c9"
+  database: "node"
 });
 
 function authorizationAndValidationChecks(token, item) {
@@ -125,8 +125,6 @@ function createQueryStringForSearch(parameters) {
   
   return queryStr;
 }
-
-
 
 exports.createItem = createItem;
 exports.updateItem = updateItem;

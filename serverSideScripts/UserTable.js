@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "valeriary",
   password: "",
-  database: "c9"
+  database: "node"
 });
 
 function registerUser(user, answer) {
@@ -56,7 +56,6 @@ function updateUser(token, user, answer) {
             } else {
                 user.password = user.new_password;
                 delete user.current_password;
-                delete user.new_password;
                 var queryUpdate = connection.query("UPDATE User SET ? WHERE token='" + token.Authorization + "'", user, function(err, result) {
                     answer(deletePrivateProperties(result[0]));
                 });
